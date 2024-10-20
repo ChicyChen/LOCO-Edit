@@ -1,0 +1,29 @@
+python main.py \
+    --sh_file_name                          main_T2I_DeepFloydIF_null_space_projection.sh           \
+    --device                                cuda:0                                      \
+    --model_name                            DeepFloyd/IF-I-M-v1.0                      \
+    --mask_model_name                       facebook/sam-vit-large                      \
+    --dataset_name                          Random                                      \
+    --edit_prompt                           "A photo of a man wearing glasses"             \
+    --for_prompt                            "A photo of a man"                          \
+    --neg_prompt                            ""                                          \
+    --x_space_guidance_scale                10.0                                         \
+    --x_space_guidance_num_step             1                                           \
+    --edit_t                                0.75                                         \
+    --run_edit_null_space_projection_xt_semantic     True                                        \
+    --note                                  "with_prompt"                               \
+    --guidance_scale                        7.5                                         \
+    --guidance_scale_edit                   7.5                                         \
+    --seed                                  2628577915                                   \
+    --null_space_projection                 True                                        \
+    --pca_rank                              1                                           \
+    --pca_rank_null                         5                                           \
+    --sampling_mode                         False                                        \
+    --mask_index                            12                                           \
+    --tilda_v_score_type                    "null+(for-null)+(edit-null)"               \
+    --mask_type                             "SAM"                                       \
+    --ablation_method                       "null-space-proj"                           \
+    --jacobian                              True                                        \
+    --vis_num                               1                                            \
+    --cache_folder                          <TODO>              
+  

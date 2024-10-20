@@ -1,0 +1,26 @@
+python main.py \
+    --sh_file_name                          main_hf_null_space_projection_Church.sh    \
+    --device                                cuda:0                                      \
+    --dtype                                 fp32                                        \
+    --sample_idx                            <TODO>                                         \
+    --model_name                            LSUN_church_HF                               \
+    --dataset_name                          LSUN_church                                 \
+    --mask_model_name                       facebook/sam-vit-large                      \
+    --mask_type                             SAM                                         \
+    --for_steps                             100                                         \
+    --inv_steps                             100                                         \
+    --use_yh_custom_scheduler               True                                        \
+    --x_space_guidance_edit_step            1                                           \
+    --x_space_guidance_scale                4.0                                         \
+    --x_space_guidance_direct               True                                        \
+    --x_space_guidance_num_step             1                                          \
+    --edit_t                                0.6                                         \
+    --performance_boosting_t                0.2                                         \
+    --run_edit_null_space_projection        True                                        \
+    --note                                  "Uncond"                                    \
+    --null_space_projection                 True                                        \
+    --pca_rank_null                         5                                           \
+    --pca_rank                              5                                           \
+    --mask_index                            <TODO>                                           \
+    --sampling_mode                         True                                       \
+    --vis_num                               2                                           

@@ -1,0 +1,31 @@
+python main.py \
+    --sh_file_name                          main_T2I_LCM_null_space_projection_nonsemantic.sh           \
+    --device                                cuda:0                                      \
+    --model_name                            SimianLuo/LCM_Dreamshaper_v7                      \
+    --mask_model_name                       facebook/sam-vit-large                      \
+    --dataset_name                          Random                                      \
+    --edit_prompt                           "A photo of a man having curly hair"            \
+    --for_prompt                            "A photo of a man"                          \
+    --neg_prompt                            ""                                          \
+    --x_space_guidance_scale                0.4                                         \
+    --x_space_guidance_num_step             24                                           \
+    --run_edit_null_space_projection_zt     True                                        \
+    --note                                  "with_prompt"                               \
+    --guidance_scale                        7.5                                         \
+    --guidance_scale_edit                   7.5                                         \
+    --seed                                  0                                   \
+    --null_space_projection                 True                                        \
+    --pca_rank                              5                                           \
+    --pca_rank_null                         5                                           \
+    --sampling_mode                         True                                         \
+    --mask_index                            5                                           \
+    --tilda_v_score_type                    "null+(for-null)+(edit-null)"                \
+    --cache_folder                          <TODO>         \
+    --use_sega                              False                                        \
+    --use_yh_custom_scheduler               False                                        \
+    --dtype                                 fp32                                         \
+    --edit_t_idx                            2                                            \
+    --non_semantic                          True                                         \
+    --vis_num                               1                                            \
+    --num_inference_steps                   4                        
+  
