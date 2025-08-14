@@ -1844,7 +1844,7 @@ class EditDeepFloydIF(object):
             for direction in [1, -1]:
                 vk = direction*vT[pc_idx, :].view(-1, *xT.shape[1:])
                 # edit xt along vk direction with **x-space guidance**
-                xt_list = [original_xt.clone().to(torch.device('cuda:0'))]
+                xt_list = [original_xt.clone().to(self.device)]
                 for _ in range(self.x_space_guidance_num_step):
                     xt_edit = self.x_space_guidance_direct(
                         xt_list[-1], t_idx=self.edit_t_idx, vk=vk, 
@@ -1973,7 +1973,7 @@ class EditDeepFloydIF(object):
                 self.EXP_NAME = f'Semantic_Edit_xt-{BASIS_NAME}_scale_{self.x_space_guidance_scale}'           
                 for direction in [1, -1]:
                     vk = direction*vT[pc_idx, :].view(-1, *xT.shape[1:])
-                    xt_list = [original_xt.clone().to(torch.device('cuda:0'))]
+                    xt_list = [original_xt.clone().to(self.device)]
                     for _ in range(self.x_space_guidance_num_step):
                         xt_edit = self.x_space_guidance_direct(
                             xt_list[-1], t_idx=self.edit_t_idx, vk=vk, 
@@ -2196,13 +2196,13 @@ class EditUncondDiffusion(object):
 
         # get latent code
         original_xt = xt.detach()
-        xt_temp = original_xt.clone().to(torch.device('cuda:0'))
+        xt_temp = original_xt.clone().to(self.device)
         xt_vis_list = []
         xt_vis_list.append(xt_temp)
         for pc_idx in range(2):
             vk = vT_list[pc_idx][0, :].view(-1, *xt.shape[1:])
             xt_edit = xt_temp + self.x_space_guidance_scale * self.x_space_guidance_num_step * vk
-            xt_temp = xt_edit.clone().to(torch.device('cuda:0'))
+            xt_temp = xt_edit.clone().to(self.device)
             xt_vis_list.append(xt_edit)
 
         self.EXP_NAME = f'{idx}-Edit_xt-noise-{BASIS_NAME}'
@@ -2347,7 +2347,7 @@ class EditUncondDiffusion(object):
                 # directly edit xt with vk
                 vk = direction*vT[pc_idx, :].view(-1, *xt.shape[1:])
 
-                xt_list = [original_xt.clone().to(torch.device('cuda:0'))]
+                xt_list = [original_xt.clone().to(self.device)]
                 for _ in tqdm(range(self.x_space_guidance_num_step), desc='x_space_guidance edit'):
                     xt_edit = self.x_space_guidance_direct(
                         xt_list[-1], t_idx=self.edit_t_idx, vk=vk, 
